@@ -14,4 +14,15 @@ require 'rails_helper'
       expect(project).not_to be_done
     end
   end
+
+  describe "project done state" do
+    let(:project) { Project.new }
+    let(:task) { Task.new }
+
+    it "marks a project done if its tasks are done" do
+      project.tasks << task
+      task.mark_completed
+      expect(project).to be_done
+    end
+  end
 end
